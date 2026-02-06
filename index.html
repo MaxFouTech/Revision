@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision – Les espaces productifs et leurs évolutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Écran d'accueil -->
+        <div id="screen-home" class="screen active">
+            <h1>Révision de Géographie</h1>
+            <h2>G T1 – C2 : Les espaces productifs et leurs évolutions</h2>
+            <p class="subtitle">Cours de 3<sup>ème</sup></p>
+
+            <div class="home-sections">
+                <div class="section-card">
+                    <span class="section-icon">🌾</span>
+                    <span>I – Les espaces agricoles</span>
+                </div>
+                <div class="section-card">
+                    <span class="section-icon">🏭</span>
+                    <span>II – Les espaces industriels</span>
+                </div>
+                <div class="section-card">
+                    <span class="section-icon">🏢</span>
+                    <span>III – Les espaces de services</span>
+                </div>
+                <div class="section-card">
+                    <span class="section-icon">📖</span>
+                    <span>Définitions</span>
+                </div>
+            </div>
+
+            <div class="home-options">
+                <label class="option-label">
+                    <span>Thème :</span>
+                    <select id="select-theme">
+                        <option value="all">Tout le chapitre</option>
+                        <option value="agricoles">I – Espaces agricoles</option>
+                        <option value="industriels">II – Espaces industriels</option>
+                        <option value="services">III – Espaces de services</option>
+                        <option value="definitions">Définitions uniquement</option>
+                    </select>
+                </label>
+                <label class="option-label">
+                    <span>Nombre de questions :</span>
+                    <select id="select-count">
+                        <option value="10">10 questions</option>
+                        <option value="15">15 questions</option>
+                        <option value="20" selected>20 questions</option>
+                        <option value="30">30 questions</option>
+                        <option value="all">Toutes les questions</option>
+                    </select>
+                </label>
+                <label class="option-label">
+                    <input type="checkbox" id="check-shuffle" checked>
+                    <span>Mélanger les questions</span>
+                </label>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-large">Commencer la révision</button>
+        </div>
+
+        <!-- Écran de quiz -->
+        <div id="screen-quiz" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="quiz-progress">Question 1 / 20</span>
+                    <span id="quiz-score">Score : 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <span id="quiz-theme-badge" class="theme-badge"></span>
+            </div>
+
+            <div class="quiz-body">
+                <div id="question-type" class="question-type"></div>
+                <h3 id="question-text" class="question-text"></h3>
+                <p id="question-hint" class="question-hint"></p>
+
+                <!-- Zone de réponse -->
+                <div id="answer-zone" class="answer-zone">
+                    <textarea id="answer-input" class="answer-input" placeholder="Tapez votre réponse ici..." rows="3"></textarea>
+                    <button id="btn-validate" class="btn btn-primary">Voir la réponse</button>
+                </div>
+
+                <!-- Zone de correction -->
+                <div id="correction-zone" class="correction-zone hidden">
+                    <div class="correction-box">
+                        <h4>Réponse attendue :</h4>
+                        <p id="correct-answer" class="correct-answer"></p>
+                    </div>
+                    <div id="explanation-box" class="explanation-box">
+                        <h4>Explication :</h4>
+                        <p id="explanation-text"></p>
+                    </div>
+                    <div class="your-answer-box">
+                        <h4>Votre réponse :</h4>
+                        <p id="your-answer"></p>
+                    </div>
+                    <div class="self-eval">
+                        <p>Avez-vous trouvé la bonne réponse ?</p>
+                        <div class="self-eval-buttons">
+                            <button id="btn-correct" class="btn btn-success">Oui, c'est correct</button>
+                            <button id="btn-incorrect" class="btn btn-danger">Non, à revoir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de résultats -->
+        <div id="screen-results" class="screen">
+            <h2>Résultats</h2>
+            <div class="results-summary">
+                <div class="score-circle">
+                    <span id="final-score">0</span>
+                    <span id="final-total">/ 20</span>
+                </div>
+                <p id="final-message" class="final-message"></p>
+            </div>
+
+            <div id="review-section" class="review-section hidden">
+                <h3>Questions à revoir :</h3>
+                <div id="review-list" class="review-list"></div>
+            </div>
+
+            <div id="success-section" class="success-section hidden">
+                <h3>Toutes les questions :</h3>
+                <div id="success-list" class="review-list"></div>
+            </div>
+
+            <div class="results-actions">
+                <button id="btn-retry-errors" class="btn btn-primary hidden">Revoir les erreurs</button>
+                <button id="btn-restart" class="btn btn-secondary">Recommencer</button>
+                <button id="btn-home" class="btn btn-secondary">Accueil</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
