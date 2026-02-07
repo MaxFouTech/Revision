@@ -319,12 +319,43 @@
 
     // Keyboard shortcuts for self-evaluation
     document.addEventListener("keydown", function (e) {
+        // Ignore shortcuts when course panel is open
+        if (!courseOverlay.classList.contains("hidden")) {
+            if (e.key === "Escape") closeCourse();
+            return;
+        }
+
         if (correctionZone.classList.contains("hidden")) return;
 
         if (e.key === "ArrowRight" || e.key === "o" || e.key === "O") {
             handleEval(true);
         } else if (e.key === "ArrowLeft" || e.key === "n" || e.key === "N") {
             handleEval(false);
+        }
+    });
+
+    // === Course Panel ===
+    var btnOpenCourse = document.getElementById("btn-open-course");
+    var courseOverlay = document.getElementById("course-overlay");
+    var btnCloseCourse = document.getElementById("btn-close-course");
+
+    function openCourse() {
+        courseOverlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeCourse() {
+        courseOverlay.classList.add("hidden");
+        document.body.style.overflow = "";
+    }
+
+    btnOpenCourse.addEventListener("click", openCourse);
+    btnCloseCourse.addEventListener("click", closeCourse);
+
+    // Close when clicking the overlay background
+    courseOverlay.addEventListener("click", function (e) {
+        if (e.target === courseOverlay) {
+            closeCourse();
         }
     });
 
